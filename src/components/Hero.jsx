@@ -42,7 +42,7 @@ export default function Hero() {
           </div>
 
           <motion.div className="hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.6 }}>
-            <p className="muted">Desarrollo de Ideas • Servidores de Minecraft</p>
+            <p className="muted">💸💰 • business man </p>
           </motion.div>
         </motion.div>
       </div>
