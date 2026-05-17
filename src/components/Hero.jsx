@@ -153,9 +153,6 @@ export default function Hero({ audioRef }) {
                   {playing ? '⏸' : '▶'}
                 </button>
 
-                {/* Nombre canción */}
-                <span className="song-title">your song</span>
-
                 {/* Tiempo actual */}
                 <span className="song-time">{fmt(progress)}</span>
 
