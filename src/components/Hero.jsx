@@ -208,7 +208,7 @@ export default function Hero({ audioRef }) {
             transition={{ delay: 0.9, duration: 0.6 }}
           >
             <p className="muted">
-              TV Series • Spanish Developer • Making money
+              TV Series • Spanish Developer • Growing myself
             </p>
           </motion.div>
 
