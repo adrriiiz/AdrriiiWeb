@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import Widgets from './components/Widgets'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Timeline from './components/Timeline'
@@ -10,7 +11,6 @@ import Social from './components/Social'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { EntryScreen } from './components/EntryScreen'
-import DiscordStatus from './components/DiscordStatus'
 
 export default function App() {
   const audioRef = useRef(null)
@@ -45,13 +45,7 @@ export default function App() {
           <Nav />
           <main>
             <Hero audioRef={audioRef} />
-
-            <section className="discord-section">
-              <div className="container">
-                <DiscordStatus />
-              </div>
-            </section>
-
+            <Widgets />
             <Projects />
             <Skills />
             <Timeline />
