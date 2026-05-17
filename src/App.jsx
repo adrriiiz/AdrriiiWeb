@@ -10,6 +10,7 @@ import Social from './components/Social'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { EntryScreen } from './components/EntryScreen'
+import DiscordStatus from './components/DiscordStatus'
 
 export default function App() {
   const audioRef = useRef(null)
