@@ -480,11 +480,55 @@ main{position:relative;z-index:10}
 .loc-clock { font-size:22px; font-weight:700; font-family:'SF Mono','Fira Code',monospace; color:var(--accent); letter-spacing:0.05em; }
 .loc-date { font-size:12px; color:var(--muted); text-transform:capitalize; }
 
-/* Working on */
-.wo-project { display:flex; align-items:center; gap:8px; }
-.wo-dot { width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px rgba(110,231,183,0.6); flex-shrink:0; }
-.wo-name { font-size:15px; font-weight:700; color:#e6eef6; }
-.wo-desc { font-size:13px; color:var(--muted); margin:0; line-height:1.5; }
-.wo-stack { display:flex; gap:6px; flex-wrap:wrap; }
-.wo-tag { padding:4px 10px; border-radius:999px; background:rgba(110,231,183,0.08); font-size:11px; color:var(--accent); font-weight:500; }
-.wo-status { font-size:12px; color:var(--muted); }
+/* Edad */
+.age-main {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.age-years {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.age-years-label {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.age-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.age-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 36px;
+}
+.age-val {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: #e6eef6;
+}
+.age-val--seconds {
+  color: var(--accent);
+}
+.age-key {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.age-birth {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
