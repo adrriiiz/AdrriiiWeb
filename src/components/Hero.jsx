@@ -29,10 +29,10 @@ export default function Hero() {
             </motion.div>
             <div className="hero-text">
               <motion.div variants={container} initial="hidden" animate="show">
-                <motion.h1 className="gradient-text" variants={item}>Adrian Ortiz</motion.h1>
+                <motion.h1 className="gradient-text" variants={item}>Adrriii</motion.h1>
               </motion.div>
               <motion.p className="lead" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.6 }}>
-                Business man · <strong>Lf new projects | Contact me</strong>
+                1f n3w pr0jects · <strong>14yo</strong>
               </motion.p>
               <motion.div className="hero-actions" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.5 }}>
                 <a className="btn primary" href="#projects">Look projects</a>
