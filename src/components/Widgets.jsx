@@ -100,7 +100,7 @@ function LocationWidget() {
         minute: '2-digit',
         second: '2-digit',
       }))
-      setDate(now.toLocaleDateString('es-ES', {
+      setDate(now.toLocaleDateString('en-EN', {
         timeZone: 'Europe/Madrid',
         weekday: 'long',
         day: 'numeric',
