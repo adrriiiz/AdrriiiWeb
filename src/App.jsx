@@ -45,7 +45,13 @@ export default function App() {
           <Nav />
           <main>
             <Hero audioRef={audioRef} />
-            <DiscordStatus />
+
+            <section className="discord-section">
+              <div className="container">
+                <DiscordStatus />
+              </div>
+            </section>
+
             <Projects />
             <Skills />
             <Timeline />
