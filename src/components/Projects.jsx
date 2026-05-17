@@ -3,15 +3,15 @@ import { motion } from 'framer-motion'
 import ProjectCard from './ProjectCard'
 
 const PROJECTS = [
-  { name: 'BuyLeonix', url: 'https://buyleonix.shop', status: 'Cerrada', role: 'Dueño', category: 'Propios' },
-  { name: 'Zroven', url: 'https://zroven.shop', status: 'Activa', role: 'Dueño', category: 'Propios' },
-  { name: 'Accuverse', url: 'https://accuverse.shop', status: 'Cerrada', role: 'Dueño', category: 'Propios' },
-  { name: 'Sandoria', url: 'https://web.sandoriamc.xyz', status: 'Activa', role: 'Co-Dueño', category: 'Colaboraciones' },
-  { name: 'Dealspov', url: 'https://dealspov.shop', status: 'Cerrada', role: 'Dueño', category: 'Propios' },
-  { name: 'GaspachoWork', url: 'https://www.gaspachowork.xyz', status: 'Activa', role: 'Co-Dueño', category: 'Colaboraciones' }
+  { name: 'BuyLeonix', url: 'https://buyleonix.shop', status: 'Closed', role: 'Founder', category: 'Own' },
+  { name: 'Zroven', url: 'https://zroven.shop', status: 'Still Working', role: 'Owner', category: 'Own' },
+  { name: 'Accuverse', url: 'https://accuverse.shop', status: 'Closed', role: 'Dueño', category: 'Collab' },
+  { name: 'Sandoria', url: 'https://web.sandoriamc.xyz', status: 'Still Working', role: 'Co-Owner', category: 'Collab' },
+  { name: 'Dealspov', url: 'https://dealspov.shop', status: 'Closed', role: 'Owner', category: 'Own' },
+  { name: 'GaspachoWork', url: 'https://www.gaspachowork.xyz', status: 'Still Working', role: 'Co-Owner', category: 'Collab' }
 ]
 
-const CATEGORIES = ['Todos', 'Propios', 'Colaboraciones', 'Cerradas']
+const CATEGORIES = ['All', 'Own', 'Collab', 'Closed']
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.06 } } }
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
 
@@ -20,7 +20,7 @@ export default function Projects() {
 
   const filtered = PROJECTS.filter(p => {
     if (cat === 'Todos') return true
-    if (cat === 'Cerradas') return p.status === 'Cerrada'
+    if (cat === 'Cerradas') return p.status === 'Closed'
     return p.category === cat
   })
 
