@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 const USER_ID = '750770728739012648'
+const BIRTHDAY = new Date('2011-11-10T00:00:00')
 
 const STATUS_COLOR = {
   online:  '#23d18b',
@@ -131,39 +132,69 @@ function LocationWidget() {
   )
 }
 
-// ── Widget Currently Working On ─────────────────────────────────
-function WorkingOnWidget() {
-  // Edita esto con tu proyecto actual
-  const project = {
-    name: 'GaspachoWork',
-    desc: 'Making games in Roblox, Unity ',
-    stack: ['Lua', 'C+', 'C++'],
-    status: 'Still Working',
-  }
+// ── Widget Edad ─────────────────────────────────────────────────
+function AgeWidget() {
+  const [age, setAge] = useState({})
+
+  useEffect(() => {
+    const calc = () => {
+      const now = new Date()
+      const diff = now - BIRTHDAY
+
+      const years   = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
+      const months  = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44))
+      const days    = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24))
+      const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+
+      setAge({ years, months, days, hours, minutes, seconds })
+    }
+    calc()
+    const iv = setInterval(calc, 1000)
+    return () => clearInterval(iv)
+  }, [])
+
+  const pad = n => String(n).padStart(2, '0')
 
   return (
-    <div className="widget widget-working">
-      <p className="widget-label">Currently working on</p>
+    <div className="widget widget-age">
+      <p className="widget-label">Edad exacta</p>
 
-      <div className="wo-project">
-        <div className="wo-dot" />
-        <span className="wo-name">{project.name}</span>
+      <div className="age-main">
+        <span className="age-years">{age.years}</span>
+        <span className="age-years-label">años</span>
       </div>
 
-      <p className="wo-desc">{project.desc}</p>
-
-      <div className="wo-stack">
-        {project.stack.map(s => (
-          <span key={s} className="wo-tag">{s}</span>
-        ))}
+      <div className="age-grid">
+        <div className="age-unit">
+          <span className="age-val">{pad(age.months)}</span>
+          <span className="age-key">meses</span>
+        </div>
+        <div className="age-unit">
+          <span className="age-val">{pad(age.days)}</span>
+          <span className="age-key">días</span>
+        </div>
+        <div className="age-unit">
+          <span className="age-val">{pad(age.hours)}</span>
+          <span className="age-key">horas</span>
+        </div>
+        <div className="age-unit">
+          <span className="age-val">{pad(age.minutes)}</span>
+          <span className="age-key">min</span>
+        </div>
+        <div className="age-unit">
+          <span className="age-val age-val--seconds">{pad(age.seconds)}</span>
+          <span className="age-key">seg</span>
+        </div>
       </div>
 
-      <span className="wo-status">⚡ {project.status}</span>
+      <p className="age-birth">🎂 10 nov 2011</p>
     </div>
   )
 }
 
-// ── Contenedor de los 3 widgets ─────────────────────────────────
+// ── Contenedor ──────────────────────────────────────────────────
 export default function Widgets() {
   return (
     <section className="widgets-section">
@@ -171,7 +202,7 @@ export default function Widgets() {
         <div className="widgets-grid">
           <DiscordWidget />
           <LocationWidget />
-          <WorkingOnWidget />
+          <AgeWidget />
         </div>
       </div>
     </section>
