@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const ITEMS = [
-  { year: '2024', title: 'SandoriaMc', desc: 'payo' },
+  { year: '2024', title: 'DesertsCraft', desc: 'It was the first profesional server that i opened.' },
   { year: '2025', title: 'Zroven', desc: 'Tienda activa bajo mi gestión' },
   { year: '2025', title: 'BuyLeonix', desc: 'Tienda activa bajo mi gestión' },
   { year: '2025', title: 'Accuverse', desc: 'Tienda de Cuentas' },
