@@ -189,7 +189,6 @@ function AgeWidget() {
         </div>
       </div>
 
-      <p className="age-birth">🎂 10 nov 2011</p>
     </div>
   )
 }
