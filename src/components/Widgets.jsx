@@ -159,33 +159,33 @@ function AgeWidget() {
 
   return (
     <div className="widget widget-age">
-      <p className="widget-label">Edad exacta</p>
+      <p className="widget-label">MY AGE</p>
 
       <div className="age-main">
         <span className="age-years">{age.years}</span>
-        <span className="age-years-label">años</span>
+        <span className="age-years-label">year(s)</span>
       </div>
 
       <div className="age-grid">
         <div className="age-unit">
           <span className="age-val">{pad(age.months)}</span>
-          <span className="age-key">meses</span>
+          <span className="age-key">month(s)</span>
         </div>
         <div className="age-unit">
           <span className="age-val">{pad(age.days)}</span>
-          <span className="age-key">días</span>
+          <span className="age-key">day(s)</span>
         </div>
         <div className="age-unit">
           <span className="age-val">{pad(age.hours)}</span>
-          <span className="age-key">horas</span>
+          <span className="age-key">hour(s)</span>
         </div>
         <div className="age-unit">
           <span className="age-val">{pad(age.minutes)}</span>
-          <span className="age-key">min</span>
+          <span className="age-key">min(s)</span>
         </div>
         <div className="age-unit">
           <span className="age-val age-val--seconds">{pad(age.seconds)}</span>
-          <span className="age-key">seg</span>
+          <span className="age-key">sec(s)</span>
         </div>
       </div>
 
