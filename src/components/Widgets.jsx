@@ -94,7 +94,7 @@ function LocationWidget() {
   useEffect(() => {
     const tick = () => {
       const now = new Date()
-      setTime(now.toLocaleTimeString('es-ES', {
+      setTime(now.toLocaleTimeString('en-EN', {
         timeZone: 'Europe/Madrid',
         hour: '2-digit',
         minute: '2-digit',
