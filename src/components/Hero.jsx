@@ -1,51 +1,212 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.08 } } }
-const item = { hidden: { opacity: 0, y: 15 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } }
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 }
+  }
+}
+
+const item = {
+  hidden: { opacity: 0, y: 15 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
+  }
+}
+
+const SONG_URL = "/music/song.mp3"
 
 export default function Hero() {
+
+  const audioRef = useRef(null)
+
+  const [playing, setPlaying] = useState(true)
+  const [volume, setVolume] = useState(0.5)
+
+  useEffect(() => {
+
+    if (audioRef.current) {
+
+      audioRef.current.volume = volume
+
+      audioRef.current.play().catch(() => {
+        console.log("Autoplay bloqueado")
+      })
+
+    }
+
+  }, [])
+
+  const toggleMusic = () => {
+
+    if (!audioRef.current) return
+
+    if (playing) {
+      audioRef.current.pause()
+    } else {
+      audioRef.current.play()
+    }
+
+    setPlaying(!playing)
+
+  }
+
   return (
     <section id="about" className="hero">
+
+      <audio ref={audioRef} loop autoPlay>
+        <source src={SONG_URL} type="audio/mpeg" />
+      </audio>
+
       <div className="container">
+
         <motion.div
           className="hero-inner"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
+
           <div className="hero-top">
-            <motion.div 
-              className="avatar" 
-              initial={{ scale: 0, rotate: -180 }} 
-              animate={{ scale: 1, rotate: 0 }} 
-              transition={{ duration: 1, type: "spring", stiffness: 100 }}
+
+            <motion.div
+              className="avatar"
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{
+                duration: 1,
+                type: "spring",
+                stiffness: 100
+              }}
             >
-              <img 
-                src="https://cdn.discordapp.com/avatars/750770728739012648/a_68be02b496127c2f75159f79443fb6e2.gif?size=512" 
-                alt="Adrriii" 
+
+              <img
+                src="https://cdn.discordapp.com/avatars/750770728739012648/a_68be02b496127c2f75159f79443fb6e2.gif?size=512"
+                alt="Adrriii"
                 className="avatar-img"
               />
+
             </motion.div>
+
             <div className="hero-text">
-              <motion.div variants={container} initial="hidden" animate="show">
-                <motion.h1 className="gradient-text" variants={item}>Adrriii</motion.h1>
+
+              <motion.div
+                variants={container}
+                initial="hidden"
+                animate="show"
+              >
+
+                <motion.h1
+                  className="gradient-text"
+                  variants={item}
+                >
+                  Adrriii
+                </motion.h1>
+
               </motion.div>
-              <motion.p className="lead" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.6 }}>
+
+              <motion.p
+                className="lead"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  delay: 0.5,
+                  duration: 0.6
+                }}
+              >
                 1f n3w pr0jects · <strong>14yo</strong>
               </motion.p>
-              <motion.div className="hero-actions" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.5 }}>
-                <a className="btn primary" href="#projects">Look projects</a>
-                <a className="btn ghost" href="#contact">Contact me</a>
+
+              <motion.div
+                className="hero-actions"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.7,
+                  duration: 0.5
+                }}
+              >
+
+                <a className="btn primary" href="#projects">
+                  Look projects
+                </a>
+
+                <a className="btn ghost" href="#contact">
+                  Contact me
+                </a>
+
               </motion.div>
+
+              {/* MINI MUSIC PLAYER */}
+
+              <motion.div
+                className="music-player"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.8,
+                  duration: 0.5
+                }}
+              >
+
+                <button
+                  onClick={toggleMusic}
+                  className="music-btn"
+                >
+                  {playing ? '⏸' : '▶'}
+                </button>
+
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={volume}
+                  onChange={(e) => {
+
+                    setVolume(e.target.value)
+
+                    if (audioRef.current) {
+                      audioRef.current.volume = e.target.value
+                    }
+
+                  }}
+                />
+
+                <span className="song-title">
+                  your song
+                </span>
+
+              </motion.div>
+
             </div>
+
           </div>
 
-          <motion.div className="hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.6 }}>
-            <p className="muted"> TV Series • Spanish Developer • Making money </p>
+          <motion.div
+            className="hero-sub"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              delay: 0.9,
+              duration: 0.6
+            }}
+          >
+
+            <p className="muted">
+              TV Series • Spanish Developer • Making money
+            </p>
+
           </motion.div>
+
         </motion.div>
+
       </div>
+
     </section>
   )
 }
