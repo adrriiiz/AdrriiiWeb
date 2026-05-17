@@ -412,3 +412,79 @@ main{position:relative;z-index:10}
   object-fit: cover;
   flex-shrink: 0;
 }
+
+/* BORRAR SI NO VA */
+/* ── Widgets ── */
+.widgets-section {
+  padding: 0 0 60px;
+}
+
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .widgets-grid { grid-template-columns: 1fr; }
+}
+
+.widget {
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color .3s;
+}
+.widget:hover {
+  border-color: rgba(110,231,183,0.25);
+}
+.widget-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+.skeleton {
+  min-height: 100px;
+  opacity: 0.4;
+}
+
+/* Discord */
+.dc-profile { display:flex; align-items:center; gap:12px; }
+.dc-avatar-wrap { position:relative; flex-shrink:0; }
+.dc-avatar { width:46px; height:46px; border-radius:50%; object-fit:cover; }
+.dc-status-dot { position:absolute; bottom:0; right:0; width:13px; height:13px; border-radius:50%; border:2px solid #0b0f14; }
+.dc-info { display:flex; flex-direction:column; gap:3px; }
+.dc-name { font-size:15px; font-weight:700; color:#e6eef6; }
+.dc-status-label { font-size:12px; font-weight:500; }
+.dc-activity { display:flex; align-items:center; gap:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); }
+.dc-activity-info { display:flex; flex-direction:column; gap:2px; flex:1; min-width:0; }
+.dc-activity-title { font-size:13px; font-weight:600; color:#e6eef6; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dc-activity-sub { font-size:11px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dc-activity-icon { font-size:18px; }
+.dc-album-art { width:38px; height:38px; border-radius:6px; object-fit:cover; flex-shrink:0; }
+
+/* Ubicación */
+.loc-top { display:flex; align-items:center; gap:12px; }
+.loc-flag { font-size:32px; }
+.loc-info { display:flex; flex-direction:column; gap:2px; }
+.loc-city { font-size:15px; font-weight:700; color:#e6eef6; }
+.loc-region { font-size:12px; color:var(--muted); }
+.loc-time { display:flex; flex-direction:column; gap:4px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); }
+.loc-clock { font-size:22px; font-weight:700; font-family:'SF Mono','Fira Code',monospace; color:var(--accent); letter-spacing:0.05em; }
+.loc-date { font-size:12px; color:var(--muted); text-transform:capitalize; }
+
+/* Working on */
+.wo-project { display:flex; align-items:center; gap:8px; }
+.wo-dot { width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px rgba(110,231,183,0.6); flex-shrink:0; }
+.wo-name { font-size:15px; font-weight:700; color:#e6eef6; }
+.wo-desc { font-size:13px; color:var(--muted); margin:0; line-height:1.5; }
+.wo-stack { display:flex; gap:6px; flex-wrap:wrap; }
+.wo-tag { padding:4px 10px; border-radius:999px; background:rgba(110,231,183,0.08); font-size:11px; color:var(--accent); font-weight:500; }
+.wo-status { font-size:12px; color:var(--muted); }
