@@ -2,8 +2,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const SKILLS = [
-  { name: 'Desarrollo de Ideas', level: 80 },
-  { name: 'Servidores de Minecraft', level: 95 }
+  { name: 'English', level: 80 },
+  { name: 'Spanish', level: 100 }
 ]
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.08 } } }
@@ -14,7 +14,7 @@ export default function Skills() {
     <section className="skills">
       <div className="container">
         <motion.h2 initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-          Habilidades
+          Languajes
         </motion.h2>
         <motion.div 
           className="skills-grid"
