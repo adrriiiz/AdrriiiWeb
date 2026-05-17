@@ -2,11 +2,11 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const ITEMS = [
-  { year: '24-25', title: 'DesertsCraft', desc: 'It was the first profesional server that i opened | Closed' },
-  { year: '25-26', title: 'Zr⌀ven', desc: 'My first brand of clothes that i created | Still working' },
-  { year: '25-26', title: 'BuyLeonix', desc: 'It used to be a iphone/samsung store | Closed' },
-  { year: '25-26', title: 'Accuverse', desc: 'It used to be a account store (steam, netflix, disney) | Closed' },
-  { year: '25-26', title: 'GaspachoWork', desc: 'Game Studio who developed Missing Texture | Opened' },
+  { year: '21/01', title: 'DesertsCraft', desc: 'It was the first profesional server that i opened | Closed' },
+  { year: '11/10', title: 'Zr⌀ven', desc: 'My first brand of clothes that i created | Still working' },
+  { year: '23/04', title: 'BuyLeonix', desc: 'It used to be a iphone/samsung store | Closed' },
+  { year: '02/04', title: 'Accuverse', desc: 'It used to be a account store (steam, netflix, disney) | Closed' },
+  { year: '29/11', title: 'GaspachoWork', desc: 'Game Studio who developed Missing Texture | Opened' },
 ]
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.12 } } }
