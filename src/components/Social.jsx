@@ -18,7 +18,7 @@ export default function Social() {
     <section className="social-section">
       <div className="container">
         <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.6 }}>
-          Sígueme
+          Follow me on Social Media
         </motion.h2>
         
         <motion.div 
