@@ -17,7 +17,7 @@ export default function Nav() {
           {['Home', 'Projects', 'Contact'].map(label => (
             <motion.a 
               key={label}
-              href={`#${label === 'Inicio' ? 'about' : label === 'Proyectos' ? 'projects' : 'contact'}`}
+              href={`#${label === 'Home' ? 'about' : label === 'Projects' ? 'projects' : 'contact'}`}
               whileHover={{ color: 'var(--accent)' }}
             >
               {label}
