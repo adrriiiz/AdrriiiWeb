@@ -16,7 +16,7 @@ const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { st
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
 
 export default function Projects() {
-  const [cat, setCat] = useState('Todos')
+  const [cat, setCat] = useState('All')
 
   const filtered = PROJECTS.filter(p => {
     if (cat === 'All') return true
