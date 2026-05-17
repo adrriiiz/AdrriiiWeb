@@ -113,13 +113,13 @@ function LocationWidget() {
 
   return (
     <div className="widget widget-location">
-      <p className="widget-label">Ubicación</p>
+      <p className="widget-label">Location</p>
 
       <div className="loc-top">
         <span className="loc-flag">🇪🇸</span>
         <div className="loc-info">
-          <span className="loc-city">Granada, España</span>
-          <span className="loc-region">Andalucía</span>
+          <span className="loc-city">Unknown, Spain</span>
+          <span className="loc-region">Andalusia</span>
         </div>
       </div>
 
@@ -135,10 +135,10 @@ function LocationWidget() {
 function WorkingOnWidget() {
   // Edita esto con tu proyecto actual
   const project = {
-    name: 'Mi Portfolio',
-    desc: 'Diseñando y desarrollando mi web personal',
-    stack: ['React', 'CSS', 'Vite'],
-    status: 'En progreso',
+    name: 'GaspachoWork',
+    desc: 'Making games in Roblox, Unity ',
+    stack: ['Lua', 'C+', 'C++'],
+    status: 'Still Working',
   }
 
   return (
