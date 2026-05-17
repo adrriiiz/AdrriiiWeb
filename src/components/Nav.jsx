@@ -11,7 +11,7 @@ export default function Nav() {
     >
       <div className="container">
         <motion.div className="brand" whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-          Adri Ortiz
+          Adrriii
         </motion.div>
         <nav>
           {['Inicio', 'Proyectos', 'Contacto'].map(label => (
