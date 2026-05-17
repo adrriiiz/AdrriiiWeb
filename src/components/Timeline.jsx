@@ -2,11 +2,11 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const ITEMS = [
-  { year: '2024-25', title: 'DesertsCraft', desc: 'It was the first profesional server that i opened | Closed' },
-  { year: '2025-26', title: 'Zr⌀ven', desc: 'My first brand of clothes that i created | Still working' },
-  { year: '2025-26', title: 'BuyLeonix', desc: 'It used to be a iphone/samsung store | Closed' },
-  { year: '2025-26', title: 'Accuverse', desc: 'It used to be a account store (steam, netflix, disney) | Closed' },
-  { year: '2025-26', title: 'GaspachoWork', desc: 'Game Studio who developed Missing Texture | Opened' },
+  { year: '24-25', title: 'DesertsCraft', desc: 'It was the first profesional server that i opened | Closed' },
+  { year: '25-26', title: 'Zr⌀ven', desc: 'My first brand of clothes that i created | Still working' },
+  { year: '25-26', title: 'BuyLeonix', desc: 'It used to be a iphone/samsung store | Closed' },
+  { year: '25-26', title: 'Accuverse', desc: 'It used to be a account store (steam, netflix, disney) | Closed' },
+  { year: '25-26', title: 'GaspachoWork', desc: 'Game Studio who developed Missing Texture | Opened' },
 ]
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.12 } } }
@@ -17,7 +17,7 @@ export default function Timeline() {
     <section className="timeline">
       <div className="container">
         <motion.h2 initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-          Trayectoria
+          TimeLine
         </motion.h2>
         <motion.div 
           className="timeline-list"
