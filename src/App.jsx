@@ -44,6 +44,7 @@ export default function App() {
           <Nav />
           <main>
             <Hero audioRef={audioRef} />
+            <DiscordStatus />
             <Projects />
             <Skills />
             <Timeline />
