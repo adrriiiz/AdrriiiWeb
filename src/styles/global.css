@@ -135,3 +135,49 @@ main{position:relative;z-index:10}
   .categories button{padding:8px 12px;font-size:13px}
   h2{font-size:28px}
 }
+
+/* si no funciona, borra a partir de aqui */
+.music-player{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  margin-top:25px;
+
+  padding:10px 16px;
+
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(10px);
+
+  border-radius:16px;
+
+  width:fit-content;
+}
+
+.music-btn{
+  background:none;
+  border:none;
+
+  color:white;
+
+  font-size:16px;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.music-btn:hover{
+  transform:scale(1.1);
+}
+
+.music-player input{
+  width:90px;
+}
+
+.song-title{
+  font-size:14px;
+  color:#ccc;
+}
