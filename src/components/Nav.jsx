@@ -14,7 +14,7 @@ export default function Nav() {
           Adrriii
         </motion.div>
         <nav>
-          {['Inicio', 'Proyectos', 'Contacto'].map(label => (
+          {['Home', 'Projects', 'Contact'].map(label => (
             <motion.a 
               key={label}
               href={`#${label === 'Inicio' ? 'about' : label === 'Proyectos' ? 'projects' : 'contact'}`}
