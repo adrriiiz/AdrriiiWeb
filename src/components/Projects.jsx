@@ -19,8 +19,8 @@ export default function Projects() {
   const [cat, setCat] = useState('Todos')
 
   const filtered = PROJECTS.filter(p => {
-    if (cat === 'Todos') return true
-    if (cat === 'Cerradas') return p.status === 'Closed'
+    if (cat === 'All') return true
+    if (cat === 'Closed') return p.status === 'Closed'
     return p.category === cat
   })
 
