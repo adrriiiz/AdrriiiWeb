@@ -23,7 +23,7 @@ export default function Hero() {
             >
               <img 
                 src="https://cdn.discordapp.com/avatars/750770728739012648/a_68be02b496127c2f75159f79443fb6e2.gif?size=512" 
-                alt="Adri Ortiz" 
+                alt="Adrriii" 
                 className="avatar-img"
               />
             </motion.div>
@@ -32,11 +32,11 @@ export default function Hero() {
                 <motion.h1 className="gradient-text" variants={item}>Adrian Ortiz</motion.h1>
               </motion.div>
               <motion.p className="lead" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.6 }}>
-                Proyectos Variados · <strong>Abierto a nuevos proyectos</strong>
+                Business man · <strong>Lf new projects | Contact me</strong>
               </motion.p>
               <motion.div className="hero-actions" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.5 }}>
-                <a className="btn primary" href="#projects">Ver proyectos</a>
-                <a className="btn ghost" href="#contact">Contactar</a>
+                <a className="btn primary" href="#projects">Look projects</a>
+                <a className="btn ghost" href="#contact">Contact me</a>
               </motion.div>
             </div>
           </div>
