@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const container = {
@@ -22,6 +22,33 @@ export default function Hero({ audioRef }) {
 
   const [playing, setPlaying] = useState(true)
   const [volume, setVolume] = useState(0.5)
+  const [progress, setProgress] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [showVolume, setShowVolume] = useState(false)
+
+  // Actualizar la barra de progreso cada segundo
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    const onTimeUpdate = () => {
+      setProgress(audio.currentTime)
+    }
+    const onLoaded = () => {
+      setDuration(audio.duration)
+    }
+
+    audio.addEventListener('timeupdate', onTimeUpdate)
+    audio.addEventListener('loadedmetadata', onLoaded)
+
+    // Por si ya está cargado cuando montamos
+    if (audio.duration) setDuration(audio.duration)
+
+    return () => {
+      audio.removeEventListener('timeupdate', onTimeUpdate)
+      audio.removeEventListener('loadedmetadata', onLoaded)
+    }
+  }, [audioRef])
 
   const toggleMusic = () => {
     if (!audioRef.current) return
@@ -31,6 +58,33 @@ export default function Hero({ audioRef }) {
       audioRef.current.play()
     }
     setPlaying(!playing)
+  }
+
+  const handleSeek = (e) => {
+    const val = parseFloat(e.target.value)
+    setProgress(val)
+    if (audioRef.current) {
+      audioRef.current.currentTime = val
+    }
+  }
+
+  const handleVolume = (e) => {
+    const val = parseFloat(e.target.value)
+    setVolume(val)
+    if (audioRef.current) {
+      audioRef.current.volume = val
+    }
+  }
+
+  // Icono de volumen según nivel
+  const volumeIcon = volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊'
+
+  // Formatear tiempo mm:ss
+  const fmt = (s) => {
+    if (!s || isNaN(s)) return '0:00'
+    const m = Math.floor(s / 60)
+    const sec = Math.floor(s % 60).toString().padStart(2, '0')
+    return `${m}:${sec}`
   }
 
   return (
@@ -51,11 +105,7 @@ export default function Hero({ audioRef }) {
               className="avatar"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{
-                duration: 1,
-                type: "spring",
-                stiffness: 100
-              }}
+              transition={{ duration: 1, type: "spring", stiffness: 100 }}
             >
               <img
                 src="https://cdn.discordapp.com/avatars/750770728739012648/a_68be02b496127c2f75159f79443fb6e2.gif?size=512"
@@ -98,25 +148,57 @@ export default function Hero({ audioRef }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
               >
+                {/* Play / Pause */}
                 <button onClick={toggleMusic} className="music-btn">
                   {playing ? '⏸' : '▶'}
                 </button>
 
+                {/* Nombre canción */}
+                <span className="song-title">your song</span>
+
+                {/* Tiempo actual */}
+                <span className="song-time">{fmt(progress)}</span>
+
+                {/* Barra de progreso */}
                 <input
+                  className="seek-bar"
                   type="range"
                   min="0"
-                  max="1"
-                  step="0.01"
-                  value={volume}
-                  onChange={(e) => {
-                    setVolume(e.target.value)
-                    if (audioRef.current) {
-                      audioRef.current.volume = e.target.value
-                    }
-                  }}
+                  max={duration || 1}
+                  step="0.1"
+                  value={progress}
+                  onChange={handleSeek}
                 />
 
-                <span className="song-title">your song</span>
+                {/* Tiempo total */}
+                <span className="song-time">{fmt(duration)}</span>
+
+                {/* Botón volumen */}
+                <div className="volume-wrap">
+                  <button
+                    className="music-btn"
+                    onClick={() => setShowVolume(v => !v)}
+                    title="Volumen"
+                  >
+                    {volumeIcon}
+                  </button>
+
+                  {showVolume && (
+                    <div className="volume-popup">
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={volume}
+                        onChange={handleVolume}
+                        className="volume-slider"
+                        style={{ writingMode: 'vertical-lr', direction: 'rtl' }}
+                      />
+                    </div>
+                  )}
+                </div>
+
               </motion.div>
 
             </div>
