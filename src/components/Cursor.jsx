@@ -119,12 +119,6 @@ export default function Cursor() {
     document.addEventListener('mousemove', onMove)
     document.addEventListener('click', onClick)
 
-    // Ocultar cursor nativo
-    document.body.style.cursor = 'none'
-    document.querySelectorAll('a, button, input, [role="button"]').forEach(el => {
-      el.style.cursor = 'none'
-    })
-
     return () => {
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('click', onClick)
