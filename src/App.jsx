@@ -118,8 +118,28 @@ export default function App() {
     return () => clearInterval(interval)
   }, [])
 
+  
   return (
     <div className="app-root">
+<video
+  autoPlay
+  loop
+  muted
+  playsInline
+  style={{
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    zIndex: -1,
+    opacity: 0.3,
+  }}
+>
+  <source src="/bg.mp4" type="video/mp4" />
+</video>
+  
       <audio ref={audioRef} loop src={randomSong} />
 
       <CustomCursor />
