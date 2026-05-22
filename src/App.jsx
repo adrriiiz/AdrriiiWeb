@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion, useMotionValue, useSpring } from 'framer-motion'
 
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -22,6 +22,68 @@ const SONGS = [
 
 const randomSong = SONGS[Math.floor(Math.random() * SONGS.length)]
 
+function CustomCursor() {
+  const x = useMotionValue(-100)
+  const y = useMotionValue(-100)
+  const springX = useSpring(x, { stiffness: 500, damping: 35, mass: 0.4 })
+  const springY = useSpring(y, { stiffness: 500, damping: 35, mass: 0.4 })
+
+  const [hovering, setHovering] = useState(false)
+  const [clicking, setClicking] = useState(false)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const move = (e) => {
+      x.set(e.clientX)
+      y.set(e.clientY)
+      if (!visible) setVisible(true)
+    }
+
+    const enter = () => setVisible(true)
+    const leave = () => setVisible(false)
+
+    const onDown = () => setClicking(true)
+    const onUp = () => setClicking(false)
+
+    const hoverStart = (e) => {
+      if (e.target.closest('a, button, input, textarea, select, label, [role="button"], .project-card, .social-card, .btn, .categories button')) {
+        setHovering(true)
+      }
+    }
+
+    const hoverEnd = () => setHovering(false)
+
+    window.addEventListener('mousemove', move)
+    window.addEventListener('mouseenter', enter)
+    window.addEventListener('mouseleave', leave)
+    window.addEventListener('mousedown', onDown)
+    window.addEventListener('mouseup', onUp)
+    document.addEventListener('mouseover', hoverStart)
+    document.addEventListener('mouseout', hoverEnd)
+
+    return () => {
+      window.removeEventListener('mousemove', move)
+      window.removeEventListener('mouseenter', enter)
+      window.removeEventListener('mouseleave', leave)
+      window.removeEventListener('mousedown', onDown)
+      window.removeEventListener('mouseup', onUp)
+      document.removeEventListener('mouseover', hoverStart)
+      document.removeEventListener('mouseout', hoverEnd)
+    }
+  }, [x, y, visible])
+
+  return (
+    <motion.div
+      className={`custom-cursor ${hovering ? 'is-hover' : ''} ${clicking ? 'is-click' : ''}`}
+      style={{
+        x: springX,
+        y: springY,
+        opacity: visible ? 1 : 0,
+      }}
+    />
+  )
+}
+
 export default function App() {
   const audioRef = useRef(null)
   const [entered, setEntered] = useState(false)
@@ -43,8 +105,9 @@ export default function App() {
 
   return (
     <div className="app-root">
-
       <audio ref={audioRef} loop src={randomSong} />
+
+      <CustomCursor />
 
       <AnimatePresence>
         {!entered && <EntryScreen onEnter={handleEnter} />}
@@ -65,7 +128,6 @@ export default function App() {
           </main>
         </>
       )}
-
     </div>
   )
 }
