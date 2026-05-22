@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { AnimatePresence, motion, useMotionValue, useSpring } from 'framer-motion'
+import Cursor from './components/Cursor'
 
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -139,6 +140,7 @@ export default function App() {
             <Social />
             <Contact />
             <Footer />
+            <Cursor />
           </main>
         </>
       )}
