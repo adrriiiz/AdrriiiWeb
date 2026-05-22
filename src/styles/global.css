@@ -734,3 +734,66 @@ main{position:relative;z-index:10}
     font-size: 13px;
   }
 }
+
+/* ── Custom Cursor ── */
+body {
+  cursor: none;
+}
+
+a, button, input, textarea, select, label, [role="button"] {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow:
+    0 0 12px rgba(110, 231, 183, 0.45),
+    0 0 28px rgba(96, 165, 250, 0.18);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition: width .18s ease, height .18s ease, background .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+
+.custom-cursor::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(110, 231, 183, 0.25);
+  box-shadow: 0 0 20px rgba(110, 231, 183, 0.12);
+  opacity: 0.9;
+}
+
+.custom-cursor.is-hover {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #ffffff, var(--accent));
+  box-shadow:
+    0 0 16px rgba(255, 255, 255, 0.35),
+    0 0 34px rgba(110, 231, 183, 0.22);
+}
+
+.custom-cursor.is-click {
+  width: 30px;
+  height: 30px;
+  opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+
+  body,
+  a, button, input, textarea, select, label, [role="button"] {
+    cursor: auto;
+  }
+}
