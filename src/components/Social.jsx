@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { SiKofi, SiTwitch, SiRoblox, SiPaypal, SiTiktok, SiInstagram } from 'react-icons/si'
 
 const SOCIALS = [
   { name: 'Ko-Fi', url: 'https://ko-fi.com/gaspachowork', Icon: SiKofi },
