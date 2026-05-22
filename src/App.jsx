@@ -12,6 +12,16 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { EntryScreen } from './components/EntryScreen'
 
+const SONGS = [
+  '/music/music1.mp3',
+  '/music/music2.mp3',
+  '/music/music3.mp3',
+  '/music/music4.mp3',
+  '/music/music5.mp3',
+]
+
+const randomSong = SONGS[Math.floor(Math.random() * SONGS.length)]
+
 export default function App() {
   const audioRef = useRef(null)
   const [entered, setEntered] = useState(false)
@@ -34,7 +44,7 @@ export default function App() {
   return (
     <div className="app-root">
 
-      <audio ref={audioRef} loop src="/music/song.mp3" />
+      <audio ref={audioRef} loop src={randomSong} />
 
       <AnimatePresence>
         {!entered && <EntryScreen onEnter={handleEnter} />}
