@@ -131,3 +131,63 @@ export default function App() {
     </div>
   )
 }
+
+function CustomCursor() {
+  const x = useMotionValue(-100)
+  const y = useMotionValue(-100)
+  const springX = useSpring(x, { stiffness: 500, damping: 35, mass: 0.4 })
+  const springY = useSpring(y, { stiffness: 500, damping: 35, mass: 0.4 })
+
+  const [hovering, setHovering] = useState(false)
+  const [clicking, setClicking] = useState(false)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const move = (e) => {
+      x.set(e.clientX)
+      y.set(e.clientY)
+      if (!visible) setVisible(true)
+    }
+
+    const enter = () => setVisible(true)
+    const leave = () => setVisible(false)
+    const onDown = () => setClicking(true)
+    const onUp = () => setClicking(false)
+
+    const onPointerOver = (e) => {
+      if (e.target.closest('a, button, input, textarea, select, label, [role="button"], .project-card, .social-card, .btn, .categories button')) {
+        setHovering(true)
+      }
+    }
+
+    const onPointerOut = (e) => {
+      if (e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('a, button, input, textarea, select, label, [role="button"], .project-card, .social-card, .btn, .categories button')) return
+      setHovering(false)
+    }
+
+    window.addEventListener('mousemove', move)
+    window.addEventListener('mouseenter', enter)
+    window.addEventListener('mouseleave', leave)
+    window.addEventListener('mousedown', onDown)
+    window.addEventListener('mouseup', onUp)
+    document.addEventListener('pointerover', onPointerOver)
+    document.addEventListener('pointerout', onPointerOut)
+
+    return () => {
+      window.removeEventListener('mousemove', move)
+      window.removeEventListener('mouseenter', enter)
+      window.removeEventListener('mouseleave', leave)
+      window.removeEventListener('mousedown', onDown)
+      window.removeEventListener('mouseup', onUp)
+      document.removeEventListener('pointerover', onPointerOver)
+      document.removeEventListener('pointerout', onPointerOut)
+    }
+  }, [x, y, visible])
+
+  return (
+    <motion.div
+      className={`custom-cursor ${hovering ? 'is-hover' : ''} ${clicking ? 'is-click' : ''}`}
+      style={{ x: springX, y: springY, opacity: visible ? 1 : 0 }}
+    />
+  )
+}
