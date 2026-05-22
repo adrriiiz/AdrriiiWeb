@@ -1,12 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 
 export default function Cursor() {
-  const dotRef    = useRef(null)
   const ringRef   = useRef(null)
   const trailsRef = useRef([])
 
   useEffect(() => {
-    const dot  = dotRef.current
     const ring = ringRef.current
 
     let mouseX = window.innerWidth  / 2
@@ -21,7 +19,6 @@ export default function Cursor() {
 
     for (let i = 0; i < TRAIL_COUNT; i++) {
       const el = document.createElement('div')
-      el.className = 'cursor-trail'
       el.style.cssText = `
         position:fixed;
         pointer-events:none;
@@ -29,9 +26,10 @@ export default function Cursor() {
         border-radius:50%;
         transform:translate(-50%,-50%);
         transition:opacity .4s;
+        opacity:0;
       `
       document.body.appendChild(el)
-      trails.push({ el, x: mouseX, y: mouseY, life: 0 })
+      trails.push({ el })
       trailsRef.current.push(el)
     }
 
@@ -44,10 +42,6 @@ export default function Cursor() {
       mouseX = e.clientX
       mouseY = e.clientY
 
-      // Dot sigue inmediatamente
-      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`
-
-      // Partícula cada ~8px de movimiento
       const dx = mouseX - lastTrailX
       const dy = mouseY - lastTrailY
       if (Math.sqrt(dx*dx + dy*dy) > 8) {
@@ -61,7 +55,7 @@ export default function Cursor() {
           ? 'rgba(110,231,183,0.7)'
           : 'rgba(96,165,250,0.6)'
         t.el.style.opacity = '1'
-        t.el.style.boxShadow = `0 0 6px rgba(110,231,183,0.5)`
+        t.el.style.boxShadow = '0 0 6px rgba(110,231,183,0.5)'
         setTimeout(() => { t.el.style.opacity = '0' }, 80)
         trailIndex++
         lastTrailX = mouseX
@@ -78,14 +72,13 @@ export default function Cursor() {
         ring.style.opacity = '1'
         ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px) scale(1)`
         setTimeout(() => {
-          ring.style.transition = 'transform 0.12s ease, opacity 0.12s ease'
+          ring.style.transition = 'width .2s, height .2s, border-color .2s, background .2s, opacity .12s, transform 0.12s ease'
         }, 20)
       }, 200)
     }
 
     // ── Hover en links/buttons ──────────────────────────────────
     const onEnter = () => {
-      dot.style.transform  += ' scale(0)'
       ring.style.width  = '50px'
       ring.style.height = '50px'
       ring.style.marginLeft = '-7px'
@@ -107,7 +100,7 @@ export default function Cursor() {
       el.addEventListener('mouseleave', onLeave)
     })
 
-    // ── RAF loop para el ring con lag ───────────────────────────
+    // ── RAF loop ring con lag ───────────────────────────────────
     const loop = () => {
       ringX += (mouseX - ringX) * 0.12
       ringY += (mouseY - ringY) * 0.12
@@ -124,31 +117,12 @@ export default function Cursor() {
       document.removeEventListener('click', onClick)
       cancelAnimationFrame(raf)
       trails.forEach(t => t.el.remove())
-      document.body.style.cursor = ''
     }
   }, [])
 
   return (
     <>
-      {/* Punto central */}
-      <div
-        ref={dotRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '8px',
-          height: '8px',
-          borderRadius: '50%',
-          background: '#6ee7b7',
-          boxShadow: '0 0 8px rgba(110,231,183,0.8)',
-          pointerEvents: 'none',
-          zIndex: 99999,
-          transition: 'transform 0.05s',
-        }}
-      />
-
-      {/* Círculo exterior con lag */}
+      {/* Círculo exterior con lag — sin punto, el cursor .cur lo reemplaza */}
       <div
         ref={ringRef}
         style={{
