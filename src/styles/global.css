@@ -75,7 +75,7 @@ body{
 
 /* cursor */
 
-html, html *, html a, html button, html input {
+* {
   cursor: url('/cursor.cur') 16 16, auto !important;
 }
 
