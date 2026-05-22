@@ -50,7 +50,7 @@ export function EntryScreen({ onEnter }) {
           <span className="entry-btn-arrow">→</span>
         </motion.button>
 
-        <p className="entry-sub">adrriii.dev</p>
+        <p className="entry-sub">adrriii.vercel.app</p>
       </motion.div>
 
       <style>{`
