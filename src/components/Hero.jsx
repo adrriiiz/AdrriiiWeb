@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Play, Pause, Volume2, VolumeX, Volume1 } from 'lucide-react'
+import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
+import { HiVolumeUp, HiVolumeOff, HiVolumeMedium } from 'react-icons/hi'
 
 const container = {
   hidden: { opacity: 0 },
@@ -78,11 +79,11 @@ export default function Hero({ audioRef }) {
   }
 
   // Icono de volumen según nivel
-  const volumeIcon = volume === 0
-  ? <VolumeX size={16} />
+const volumeIcon = volume === 0
+  ? <HiVolumeOff size={18} />
   : volume < 0.5
-  ? <Volume1 size={16} />
-  : <Volume2 size={16} />
+  ? <HiVolumeMedium size={18} />
+  : <HiVolumeUp size={18} />
 
   // Formatear tiempo mm:ss
   const fmt = (s) => {
@@ -155,7 +156,7 @@ export default function Hero({ audioRef }) {
               >
                 {/* Play / Pause */}
                 <button onClick={toggleMusic} className="music-btn">
-                  {playing ? <Pause size={16} /> : <Play size={16} />}
+                  {playing ? <BsPauseFill size={18} /> : <BsFillPlayFill size={18} />}
                 </button>
 
                 {/* Tiempo actual */}
