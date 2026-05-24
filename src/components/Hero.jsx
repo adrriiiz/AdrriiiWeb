@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi'
 import { HiSpeakerWave } from 'react-icons/hi2'
 
@@ -28,22 +29,16 @@ export default function Hero({ audioRef }) {
   const [duration, setDuration] = useState(0)
   const [showVolume, setShowVolume] = useState(false)
 
-  // Actualizar la barra de progreso cada segundo
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
-    const onTimeUpdate = () => {
-      setProgress(audio.currentTime)
-    }
-    const onLoaded = () => {
-      setDuration(audio.duration)
-    }
+    const onTimeUpdate = () => setProgress(audio.currentTime)
+    const onLoaded = () => setDuration(audio.duration)
 
     audio.addEventListener('timeupdate', onTimeUpdate)
     audio.addEventListener('loadedmetadata', onLoaded)
 
-    // Por si ya está cargado cuando montamos
     if (audio.duration) setDuration(audio.duration)
 
     return () => {
@@ -65,27 +60,21 @@ export default function Hero({ audioRef }) {
   const handleSeek = (e) => {
     const val = parseFloat(e.target.value)
     setProgress(val)
-    if (audioRef.current) {
-      audioRef.current.currentTime = val
-    }
+    if (audioRef.current) audioRef.current.currentTime = val
   }
 
   const handleVolume = (e) => {
     const val = parseFloat(e.target.value)
     setVolume(val)
-    if (audioRef.current) {
-      audioRef.current.volume = val
-    }
+    if (audioRef.current) audioRef.current.volume = val
   }
 
-  // Icono de volumen según nivel
-const volumeIcon = volume === 0
-  ? <HiVolumeOff size={18} />
-  : volume < 0.5
-  ? <HiVolumeUp size={18} />
-  : <HiSpeakerWave size={18} />
+  const volumeIcon = volume === 0
+    ? <HiVolumeOff size={18} />
+    : volume < 0.5
+    ? <HiVolumeUp size={18} />
+    : <HiSpeakerWave size={18} />
 
-  // Formatear tiempo mm:ss
   const fmt = (s) => {
     if (!s || isNaN(s)) return '0:00'
     const m = Math.floor(s / 60)
@@ -95,16 +84,13 @@ const volumeIcon = volume === 0
 
   return (
     <section id="about" className="hero">
-
       <div className="container">
-
         <motion.div
           className="hero-inner"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
-
           <div className="hero-top">
 
             <motion.div
@@ -154,15 +140,12 @@ const volumeIcon = volume === 0
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
               >
-                {/* Play / Pause */}
                 <button onClick={toggleMusic} className="music-btn">
                   {playing ? <BsPauseFill size={18} /> : <BsFillPlayFill size={18} />}
                 </button>
 
-                {/* Tiempo actual */}
                 <span className="song-time">{fmt(progress)}</span>
 
-                {/* Barra de progreso */}
                 <input
                   className="seek-bar"
                   type="range"
@@ -173,10 +156,8 @@ const volumeIcon = volume === 0
                   onChange={handleSeek}
                 />
 
-                {/* Tiempo total */}
                 <span className="song-time">{fmt(duration)}</span>
 
-                {/* Botón volumen */}
                 <div className="volume-wrap">
                   <button
                     className="music-btn"
@@ -220,7 +201,6 @@ const volumeIcon = volume === 0
 
         </motion.div>
       </div>
-
     </section>
   )
 }
