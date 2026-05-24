@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { Play, Pause, Volume2, VolumeX, Volume1 } from 'lucide-react'
 
 const container = {
   hidden: { opacity: 0 },
@@ -150,7 +151,7 @@ export default function Hero({ audioRef }) {
               >
                 {/* Play / Pause */}
                 <button onClick={toggleMusic} className="music-btn">
-                  {playing ? '⏸' : '▶'}
+                  {playing ? <Pause size={16} /> : <Play size={16} />}
                 </button>
 
                 {/* Tiempo actual */}
