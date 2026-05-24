@@ -78,7 +78,11 @@ export default function Hero({ audioRef }) {
   }
 
   // Icono de volumen según nivel
-  const volumeIcon = volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊'
+  const volumeIcon = volume === 0
+  ? <VolumeX size={16} />
+  : volume < 0.5
+  ? <Volume1 size={16} />
+  : <Volume2 size={16} />
 
   // Formatear tiempo mm:ss
   const fmt = (s) => {
