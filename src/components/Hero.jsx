@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
-import { HiVolumeUp, HiVolumeOff, HiVolumeMedium } from 'react-icons/hi'
+import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi'
+import { HiSpeakerWave } from 'react-icons/hi2'
 
 const container = {
   hidden: { opacity: 0 },
@@ -82,8 +82,8 @@ export default function Hero({ audioRef }) {
 const volumeIcon = volume === 0
   ? <HiVolumeOff size={18} />
   : volume < 0.5
-  ? <HiVolumeMedium size={18} />
-  : <HiVolumeUp size={18} />
+  ? <HiVolumeUp size={18} />
+  : <HiSpeakerWave size={18} />
 
   // Formatear tiempo mm:ss
   const fmt = (s) => {
