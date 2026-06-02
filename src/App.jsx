@@ -14,11 +14,7 @@ import Footer from './components/Footer'
 import { EntryScreen } from './components/EntryScreen'
 
 const SONGS = [
-  '/music/music1.mp3',
-  '/music/music2.mp3',
-  '/music/music3.mp3',
-  '/music/music4.mp3',
-  '/music/music5.mp3',
+  '/music/music6.mp3',
 ]
 
 const randomSong = SONGS[Math.floor(Math.random() * SONGS.length)]
