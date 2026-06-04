@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { AnimatePresence, motion, useMotionValue, useSpring } from 'framer-motion'
-import Cursor from './components/Cursor'
+import { AnimatePresence } from 'framer-motion'
 
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -18,82 +17,6 @@ const SONGS = [
 ]
 
 const randomSong = SONGS[Math.floor(Math.random() * SONGS.length)]
-
-function CustomCursor() {
-  const x = useMotionValue(-100)
-  const y = useMotionValue(-100)
-  const springX = useSpring(x, { stiffness: 500, damping: 35, mass: 0.4 })
-  const springY = useSpring(y, { stiffness: 500, damping: 35, mass: 0.4 })
-
-  const [hovering, setHovering] = useState(false)
-  const [clicking, setClicking] = useState(false)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const move = (e) => {
-      x.set(e.clientX)
-      y.set(e.clientY)
-      if (!visible) setVisible(true)
-    }
-
-    const enter = () => setVisible(true)
-    const leave = () => setVisible(false)
-    const onDown = () => setClicking(true)
-    const onUp = () => setClicking(false)
-
-    const onPointerOver = (e) => {
-      if (
-        e.target.closest(
-          'a, button, input, textarea, select, label, [role="button"], .project-card, .social-card, .btn, .categories button'
-        )
-      ) {
-        setHovering(true)
-      }
-    }
-
-    const onPointerOut = (e) => {
-      if (
-        e.relatedTarget &&
-        e.relatedTarget.closest &&
-        e.relatedTarget.closest(
-          'a, button, input, textarea, select, label, [role="button"], .project-card, .social-card, .btn, .categories button'
-        )
-      ) {
-        return
-      }
-      setHovering(false)
-    }
-
-    window.addEventListener('mousemove', move)
-    window.addEventListener('mouseenter', enter)
-    window.addEventListener('mouseleave', leave)
-    window.addEventListener('mousedown', onDown)
-    window.addEventListener('mouseup', onUp)
-    document.addEventListener('pointerover', onPointerOver)
-    document.addEventListener('pointerout', onPointerOut)
-
-    return () => {
-      window.removeEventListener('mousemove', move)
-      window.removeEventListener('mouseenter', enter)
-      window.removeEventListener('mouseleave', leave)
-      window.removeEventListener('mousedown', onDown)
-      window.removeEventListener('mouseup', onUp)
-      document.removeEventListener('pointerover', onPointerOver)
-      document.removeEventListener('pointerout', onPointerOut)
-    }
-  }, [x, y, visible])
-
-  return (
-    <motion.div
-      className={`custom-cursor ${hovering ? 'is-hover' : ''} ${clicking ? 'is-click' : ''}`}
-      style={{
-        x: springX,
-        y: springY,
-        opacity: visible ? 1 : 0,
-      }}
-    />
-  )
-}
 
 export default function App() {
   const audioRef = useRef(null)
@@ -114,31 +37,28 @@ export default function App() {
     return () => clearInterval(interval)
   }, [])
 
-  
   return (
     <div className="app-root">
-<video
-  autoPlay
-  loop
-  muted
-  playsInline
-  style={{
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    zIndex: -1,
-    opacity: 0.3,
-  }}
->
-  <source src="/bg.mp4" type="video/mp4" />
-</video>
-  
-      <audio ref={audioRef} loop src={randomSong} />
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: -1,
+          opacity: 0.3,
+        }}
+      >
+        <source src="/bg.mp4" type="video/mp4" />
+      </video>
 
-      <CustomCursor />
+      <audio ref={audioRef} loop src={randomSong} />
 
       <AnimatePresence>
         {!entered && <EntryScreen onEnter={handleEnter} />}
