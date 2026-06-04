@@ -22,6 +22,15 @@ body{
 .site-nav nav a{color:var(--muted);margin-left:24px;text-decoration:none;transition:all .3s;position:relative}
 .site-nav nav a:hover{color:var(--accent);transform:translateY(-2px)}
 
+@font-face {
+  font-family: 'MiFont';
+  src: url('/fonts/mifont.ttf') format('truetype');
+}
+
+body {
+  font-family: 'MiFont', sans-serif;
+}
+
 .hero{padding:100px 0 60px;min-height:60vh;display:flex;align-items:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle, rgba(96,165,250,0.2), transparent 70%);filter:blur(80px);z-index:0}
 .hero .container{display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
