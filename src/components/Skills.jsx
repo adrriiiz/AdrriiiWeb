@@ -2,8 +2,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const SKILLS = [
-  { name: 'English', level: 80 },
-  { name: 'Spanish', level: 100 }
+  { name: 'English', level: 50 },
+  { name: 'Spanish', level: 70 }
 ]
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.08 } } }
