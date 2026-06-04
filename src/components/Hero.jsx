@@ -82,6 +82,16 @@ export default function Hero({ audioRef }) {
     return `${m}:${sec}`
   }
 
+  <style>{`
+  @font-face {
+    font-family: 'MiFont';
+    src: url('/fonts/mifont.ttf') format('truetype');
+  }
+  .hero {
+    font-family: 'MiFont', sans-serif;
+  }
+`}</style>
+  
   return (
     <section id="about" className="hero">
       <div className="container">
