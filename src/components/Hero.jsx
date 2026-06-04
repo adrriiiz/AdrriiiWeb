@@ -99,8 +99,12 @@ export default function Hero({ audioRef }) {
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 1, type: "spring", stiffness: 100 }}
             >
+              {/* 
+                Pon tu imagen en la carpeta public/ con el nombre pfp.gif (o pfp.png / pfp.jpg)
+                y cambia la extensión aquí si es necesario.
+              */}
               <img
-                src="https://cdn.discordapp.com/avatars/750770728739012648/a_68be02b496127c2f75159f79443fb6e2.gif?size=512"
+                src="/pfp.gif"
                 alt="Adrriii"
                 className="avatar-img"
               />
