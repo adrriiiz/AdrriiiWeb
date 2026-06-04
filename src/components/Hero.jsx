@@ -81,16 +81,6 @@ export default function Hero({ audioRef }) {
     const sec = Math.floor(s % 60).toString().padStart(2, '0')
     return `${m}:${sec}`
   }
-
-  <style>{`
-  @font-face {
-    font-family: 'MiFont';
-    src: url('/fonts/mifont.ttf') format('truetype');
-  }
-  .hero {
-    font-family: 'MiFont', sans-serif;
-  }
-`}</style>
   
   return (
     <section id="about" className="hero">
