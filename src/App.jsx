@@ -156,7 +156,6 @@ export default function App() {
             <Social />
             <Contact />
             <Footer />
-            <Cursor />
           </main>
         </>
       )}
