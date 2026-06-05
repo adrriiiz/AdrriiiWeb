@@ -23,8 +23,6 @@ const BACKGROUNDS = [
   { type: 'video',    src:   '/bg2.mp4' },
   { type: 'video',    src:   '/bg3.mp4' },
   { type: 'video',    src:   '/bg4.mp4' },
-  { type: 'gradient', value: 'linear-gradient(135deg, #0f0c29, #302b63, #24243e)' },
-  { type: 'gradient', value: 'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)' },
 ]
 
 const randomSong = SONGS[Math.floor(Math.random() * SONGS.length)]
