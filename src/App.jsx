@@ -14,6 +14,9 @@ import { EntryScreen } from './components/EntryScreen'
 
 const SONGS = [
   '/music/music6.mp3',
+  '/music/music7.mp3',
+  '/music/music8.mp3',
+  '/music/music9.mp3',  
 ]
 
 const randomSong = SONGS[Math.floor(Math.random() * SONGS.length)]
