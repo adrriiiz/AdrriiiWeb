@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
-
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Widgets from './components/Widgets'
@@ -16,10 +15,20 @@ const SONGS = [
   '/music/music6.mp3',
   '/music/music7.mp3',
   '/music/music8.mp3',
-  '/music/music9.mp3',  
+  '/music/music9.mp3',
+]
+
+const BACKGROUNDS = [
+  { type: 'video',    src:   '/bg.mp4' },
+  { type: 'video',    src:   '/bg2.mp4' },
+  { type: 'video',    src:   '/bg3.mp4' },
+  { type: 'video',    src:   '/bg4.mp4' },
+  { type: 'gradient', value: 'linear-gradient(135deg, #0f0c29, #302b63, #24243e)' },
+  { type: 'gradient', value: 'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)' },
 ]
 
 const randomSong = SONGS[Math.floor(Math.random() * SONGS.length)]
+const randomBg   = BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
 
 export default function App() {
   const audioRef = useRef(null)
@@ -31,7 +40,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    const sequence = ['A', 'Ad', 'Adr', 'Adri', 'Adria', 'Adrian', 'Adria', 'Adri', 'Adr', 'Ad', 'A']
+    const sequence = ['A','Ad','Adr','Adri','Adria','Adrian','Adria','Adri','Adr','Ad','A']
     let index = 0
     const interval = setInterval(() => {
       document.title = sequence[index] + ' • Portfolio'
@@ -42,24 +51,24 @@ export default function App() {
 
   return (
     <div className="app-root">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: -1,
-          opacity: 0.3,
-        }}
-      >
-        <source src="/bg.mp4" type="video/mp4" />
-      </video>
+
+      {/* ── Fondo dinámico ── */}
+      {randomBg.type === 'video' && (
+        <video autoPlay loop muted playsInline
+          style={{ position:'fixed', top:0, left:0, width:'100%', height:'100%',
+                   objectFit:'cover', zIndex:-1, opacity:0.3 }}>
+          <source src={randomBg.src} type="video/mp4" />
+        </video>
+      )}
+      {randomBg.type === 'image' && (
+        <div style={{ position:'fixed', top:0, left:0, width:'100%', height:'100%',
+                      backgroundImage:`url(${randomBg.src})`, backgroundSize:'cover',
+                      backgroundPosition:'center', zIndex:-1, opacity:0.3 }} />
+      )}
+      {randomBg.type === 'gradient' && (
+        <div style={{ position:'fixed', top:0, left:0, width:'100%', height:'100%',
+                      background:randomBg.value, zIndex:-1 }} />
+      )}
 
       <audio ref={audioRef} loop src={randomSong} />
 
